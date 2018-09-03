@@ -9,9 +9,9 @@ app.use(express.static(__dirname + '/public'))
 app.use((req, res, next) => {
     next()
 })
-app.use((req, res, next) => {
-    res.render('maintenance.hbs')
-})
+// app.use((req, res, next) => {
+//     res.render('maintenance.hbs')
+// })
   
 hbs.registerPartials(__dirname + '/views/partials')
 hbs.registerHelper('getCurrentYear', () => {
@@ -31,7 +31,11 @@ app.get('/about', (req, res) => {
       
     })
 })
-
+app.get('/projects', (req, res) => {
+    res.render('projects.hbs', {
+        pageTitle: 'Projects'
+    })
+})
 app.get('/bad', (req, res) => {
     res.send({
         errorMessage: 'Invalid URL'
